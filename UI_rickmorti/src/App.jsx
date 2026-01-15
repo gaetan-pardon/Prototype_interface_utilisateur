@@ -3,6 +3,23 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+async function testApi() {
+  try {
+    const res = await fetch("https://rickandmortyapi.com/api/character");
+
+    if (!res.ok) {
+      throw new Error(res.status); //HTTP ${ }
+    }
+
+    const data = await res.json();
+    console.log("Données reçues :", data);
+  } catch (err) {
+    console.log("Erreur :", err.message);
+  }
+}
+
+testApi();
+
 function App() {
   const [count, setCount] = useState(0)
 
