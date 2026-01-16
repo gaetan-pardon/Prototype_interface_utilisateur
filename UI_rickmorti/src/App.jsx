@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect , useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+/*
 async function testApi() {
   try {
     const res = await fetch("https://rickandmortyapi.com/api/character");
@@ -18,10 +18,33 @@ async function testApi() {
   }
 }
 
-testApi();
+testApi(); */
 
 function App() {
   const [count, setCount] = useState(0)
+  const [items, setItems] = useState([]);      // ce que tu affiches
+  const [loading, setLoading] = useState(true); // état de chargement
+  const [error, setError] = useState(null);     // message d’erreur
+
+  useEffect(() => { 
+    async function load() {
+  try {
+    const res = await fetch("https://rickandmortyapi.com/api/character");
+
+    if (!res.ok) {
+      throw new Error(res.status); //HTTP ${ }
+    }
+
+    const data = await res.json();
+    console.log("Données reçues :", data);
+  } catch (err) {
+    console.log("Erreur :", err.message);
+  }finally {
+        setLoading(false);
+      }
+    } load();
+}, []); 
+
 
   return (
     <>
@@ -39,6 +62,7 @@ function App() {
           count is {count}
         </button>
         <p>
+          code statue : {loading ? "loading..." : "loaded"}
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
