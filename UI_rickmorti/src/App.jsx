@@ -37,6 +37,7 @@ function App() {
 
     const data = await res.json();
     console.log("Données reçues :", data);
+    setItems(data);
   } catch (err) {
     console.log("Erreur :", err.message);
   }finally {
@@ -44,6 +45,10 @@ function App() {
       }
     } load();
 }, []); 
+
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>Erreur: {error}</p>;
+  if (items.length === 0) return <p>Aucun résultat</p>;
 
 
   return (
@@ -62,9 +67,16 @@ function App() {
           count is {count}
         </button>
         <p>
-          code statue : {loading ? "loading..." : "loaded"}
+          error statue : {error ? "error" : "no error"} <br />
+          load statue : {loading ? "loading..." : "loaded"} <br />
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        {items.results.map((item) => (
+            <div key={item.id}>
+              <h2>{item.id} {item.name}</h2>
+              <img src={item.image} alt={item.name} />
+            </div>
+          ))};
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
