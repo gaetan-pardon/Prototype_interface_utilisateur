@@ -69,14 +69,20 @@ function App() {
         <p>
           error statue : {error ? "error" : "no error"} <br />
           load statue : {loading ? "loading..." : "loaded"} <br />
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Edit <code>src/App.jsx</code> and save to test HMR <br />
+          {items.results[count].name} items.
         </p>
+            <div key={items.results[count].id}>
+              <h2>{items.results[count].id} {items.results[count].name}</h2>
+              <img src={items.results[count].image} alt={items.results[count].name} />
+            </div>
+
         {items.results.map((item) => (
             <div key={item.id}>
               <h2>{item.id} {item.name}</h2>
               <img src={item.image} alt={item.name} />
             </div>
-          ))};
+          ))}
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
