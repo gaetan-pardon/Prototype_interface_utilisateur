@@ -27,6 +27,9 @@ function App() {
   const [error, setError] = useState(null);     // message d’erreur
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState(""); 
+  const [gender, setGender] = useState(""); 
+  const [status, setStatus] = useState(""); 
+
   const [itemsfilter, setItemsfilter] = useState([]); 
 
   useEffect(() => {
@@ -73,6 +76,13 @@ function App() {
   loadwf();
 }, [filter]);
 
+  useEffect(() => {       const params = new URLSearchParams();
+      if (status) params.set("status", status);
+      if (gender) params.set("gender", gender);
+      setFilter(params.toString());
+
+  }, [status, gender]);
+
 
 
   if (loading) return <p>Chargement...</p>;
@@ -101,6 +111,26 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR <br />
           {items.results[count].name} items.
         </p>
+        <label>
+        Status:
+        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option value="">Tous</option>
+          <option value="alive">Alive</option>
+          <option value="dead">Dead</option>
+          <option value="unknown">Unknown</option>
+        </select>
+      </label>
+
+      <label>
+        Gender:
+        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="">Tous</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="genderless">Genderless</option>
+          <option value="unknown">Unknown</option>
+        </select>
+      </label>
         <form
           onSubmit={(e) => {
             e.preventDefault();
