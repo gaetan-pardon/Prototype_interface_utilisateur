@@ -56,7 +56,7 @@ function App() {
       setError(null);
 
       
-      const res = await fetch("https://rickandmortyapi.com/api/character/?" + input);
+      const res = await fetch("https://rickandmortyapi.com/api/character/?" + filter);
       if (!res.ok) throw new Error(res.status);
 
       const data = await res.json();
@@ -71,7 +71,7 @@ function App() {
   }
 
   loadwf();
-}, []);
+}, [filter]);
 
 
 
