@@ -28,6 +28,7 @@ function App() {
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("");
   const [gender, setGender] = useState("");
+  const [species, setSpecies] = useState("");
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
   const [pagesTotal, setPagesTotal] = useState(null);
@@ -84,10 +85,10 @@ function App() {
     if (page) params.set("page", page);
     if (status) params.set("status", status);
     if (gender) params.set("gender", gender);
+    if (species) params.set("species", species);
     setFilter(params.toString());
 
-  }, [page, status, gender]);
-
+  }, [page, status, gender, species]);
 
   useEffect(() => {
     setPage(1);
@@ -132,6 +133,17 @@ function App() {
             <option value="male">Male</option>
             <option value="genderless">Genderless</option>
             <option value="unknown">Unknown</option>
+          </select>
+        </label>
+
+         <label>
+          Species:
+          <select value={species} onChange={(e) => setSpecies(e.target.value)}>
+            <option value="">Tous</option>
+            <option value="Human">Human</option>
+            <option value="Alien">Alien</option>
+            <option value="Humanoid">Humanoid</option>
+            <option value="Mythological Creature">Mythological Creature</option>
           </select>
         </label>
         <label>
