@@ -149,6 +149,19 @@ function App() {
               ))}
           </select>
         </label>
+        <div key={items.results[count].id}>
+          <h2>{items.results[count].id} {items.results[count].name}</h2>
+          <img src={items.results[count].image} alt={items.results[count].name} />
+        </div>
+        {console.log("itemsfilter", itemsfilter)}
+
+        { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item) => (
+          <div key={item.id} style={{ display: "inline-block", margin: "10px" }}>
+            <h2>{item.id} {item.name}</h2>
+            <img src={item.image} alt={item.name} />
+          </div>
+        )) }
+      </div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -162,18 +175,6 @@ function App() {
           />
           <button type="submit">Rechercher</button>
         </form>
-        <div key={items.results[count].id}>
-          <h2>{items.results[count].id} {items.results[count].name}</h2>
-          <img src={items.results[count].image} alt={items.results[count].name} />
-        </div>
-
-        {itemsfilter.results.map((item) => (
-          <div key={item.id} style={{ display: "inline-block", margin: "10px" }}>
-            <h2>{item.id} {item.name}</h2>
-            <img src={item.image} alt={item.name} />
-          </div>
-        ))}
-      </div>
         <p>
           error statue : {error ? "error" : "no error"} <br />
           load statue : {loading ? "loading..." : "loaded"} <br />
