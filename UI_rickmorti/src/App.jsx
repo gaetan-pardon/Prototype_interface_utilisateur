@@ -29,6 +29,8 @@ function App() {
   const [filter, setFilter] = useState(""); 
   const [gender, setGender] = useState(""); 
   const [status, setStatus] = useState(""); 
+  const [page, setPage] = useState(1);
+  const [pagesTotal, setPagesTotal] = useState(null);
 
   const [itemsfilter, setItemsfilter] = useState([]); 
 
@@ -63,7 +65,7 @@ function App() {
       if (!res.ok) throw new Error(res.status);
 
       const data = await res.json();
-      console.log("Données reçues :", data);
+      console.log("Données filtrée reçues :", data);
       setItemsfilter(data);
     } catch (e) {
       setError(e.message);
@@ -108,6 +110,7 @@ function App() {
         <p>
           error statue : {error ? "error" : "no error"} <br />
           load statue : {loading ? "loading..." : "loaded"} <br />
+          load statue : {itemsfilter.length ? "reponse 0" : "reponse non null" } <br />
           Edit <code>src/App.jsx</code> and save to test HMR <br />
           {items.results[count].name} items.
         </p>
