@@ -67,6 +67,7 @@ function App() {
       const data = await res.json();
       console.log("Données filtrée reçues :", data);
       setItemsfilter(data);
+      setPagesTotal(data.info.pages);
     } catch (e) {
       setError(e.message);
       setItems([]);
@@ -79,12 +80,17 @@ function App() {
 }, [filter]);
 
   useEffect(() => {       const params = new URLSearchParams();
+      if (page) params.set("page", page);
       if (status) params.set("status", status);
       if (gender) params.set("gender", gender);
       setFilter(params.toString());
 
-  }, [status, gender]);
+  }, [page, status, gender]);
 
+
+  useEffect(() => {       
+    setPage(1);
+  }, [pagesTotal]);
 
 
   if (loading) return <p>Chargement...</p>;
@@ -134,6 +140,21 @@ function App() {
           <option value="unknown">Unknown</option>
         </select>
       </label>
+      <label>
+      Page :
+      <select
+        value={page}
+        onChange={(e) => setPage(Number(e.target.value))}
+        disabled={loading || !pagesTotal}
+      >
+        {pagesTotal &&
+          Array.from({ length: pagesTotal }, (_, i) => i + 1).map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
+          ))}
+      </select>
+    </label>
         <form
           onSubmit={(e) => {
             e.preventDefault();
