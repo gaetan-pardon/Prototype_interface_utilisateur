@@ -109,18 +109,11 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Rick & Morty</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          error statue : {error ? "error" : "no error"} <br />
-          load statue : {loading ? "loading..." : "loaded"} <br />
-          load statue : {itemsfilter.length ? "reponse 0" : "reponse non null"} <br />
-          Edit <code>src/App.jsx</code> and save to test HMR <br />
-          {items.results[count].name} items.
-        </p>
         <label>
           Status:
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -181,9 +174,11 @@ function App() {
           </div>
         ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <p>
+          error statue : {error ? "error" : "no error"} <br />
+          load statue : {loading ? "loading..." : "loaded"} <br />
+          Edit <code>src/App.jsx</code> and save to test HMR <br />
+        </p>
     </>
   )
 }
