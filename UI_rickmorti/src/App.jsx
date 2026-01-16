@@ -21,18 +21,18 @@ async function testApi() {
 testApi(); */
 
 function App() {
-  const [count, setCount] = useState(0) ;
+  const [count, setCount] = useState(0);
   const [items, setItems] = useState([]);      // ce que tu affiches
   const [loading, setLoading] = useState(true); // état de chargement
   const [error, setError] = useState(null);     // message d’erreur
   const [input, setInput] = useState("");
-  const [filter, setFilter] = useState(""); 
-  const [gender, setGender] = useState(""); 
-  const [status, setStatus] = useState(""); 
+  const [filter, setFilter] = useState("");
+  const [gender, setGender] = useState("");
+  const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
   const [pagesTotal, setPagesTotal] = useState(null);
 
-  const [itemsfilter, setItemsfilter] = useState([]); 
+  const [itemsfilter, setItemsfilter] = useState([]);
 
   useEffect(() => {
     async function load() {
@@ -55,40 +55,41 @@ function App() {
   }, []);
 
   useEffect(() => {
-  async function loadwf() {
-    try {
-      setLoading(true);
-      setError(null);
+    async function loadwf() {
+      try {
+        setLoading(true);
+        setError(null);
 
-      
-      const res = await fetch("https://rickandmortyapi.com/api/character/?" + filter);
-      if (!res.ok) throw new Error(res.status);
 
-      const data = await res.json();
-      console.log("Données filtrée reçues :", data);
-      setItemsfilter(data);
-      setPagesTotal(data.info.pages);
-    } catch (e) {
-      setError(e.message);
-      setItems([]);
-    } finally {
-      setLoading(false);
+        const res = await fetch("https://rickandmortyapi.com/api/character/?" + filter);
+        if (!res.ok) throw new Error(res.status);
+
+        const data = await res.json();
+        console.log("Données filtrée reçues :", data);
+        setItemsfilter(data);
+        setPagesTotal(data.info.pages);
+      } catch (e) {
+        setError(e.message);
+        setItems([]);
+      } finally {
+        setLoading(false);
+      }
     }
-  }
 
-  loadwf();
-}, [filter]);
+    loadwf();
+  }, [filter]);
 
-  useEffect(() => {       const params = new URLSearchParams();
-      if (page) params.set("page", page);
-      if (status) params.set("status", status);
-      if (gender) params.set("gender", gender);
-      setFilter(params.toString());
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (page) params.set("page", page);
+    if (status) params.set("status", status);
+    if (gender) params.set("gender", gender);
+    setFilter(params.toString());
 
   }, [page, status, gender]);
 
 
-  useEffect(() => {       
+  useEffect(() => {
     setPage(1);
   }, [pagesTotal]);
 
@@ -116,45 +117,45 @@ function App() {
         <p>
           error statue : {error ? "error" : "no error"} <br />
           load statue : {loading ? "loading..." : "loaded"} <br />
-          load statue : {itemsfilter.length ? "reponse 0" : "reponse non null" } <br />
+          load statue : {itemsfilter.length ? "reponse 0" : "reponse non null"} <br />
           Edit <code>src/App.jsx</code> and save to test HMR <br />
           {items.results[count].name} items.
         </p>
         <label>
-        Status:
-        <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="">Tous</option>
-          <option value="alive">Alive</option>
-          <option value="dead">Dead</option>
-          <option value="unknown">Unknown</option>
-        </select>
-      </label>
+          Status:
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            <option value="">Tous</option>
+            <option value="alive">Alive</option>
+            <option value="dead">Dead</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </label>
 
-      <label>
-        Gender:
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="">Tous</option>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-          <option value="genderless">Genderless</option>
-          <option value="unknown">Unknown</option>
-        </select>
-      </label>
-      <label>
-      Page :
-      <select
-        value={page}
-        onChange={(e) => setPage(Number(e.target.value))}
-        disabled={loading || !pagesTotal}
-      >
-        {pagesTotal &&
-          Array.from({ length: pagesTotal }, (_, i) => i + 1).map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
-          ))}
-      </select>
-    </label>
+        <label>
+          Gender:
+          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+            <option value="">Tous</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="genderless">Genderless</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </label>
+        <label>
+          Page :
+          <select
+            value={page}
+            onChange={(e) => setPage(Number(e.target.value))}
+            disabled={loading || !pagesTotal}
+          >
+            {pagesTotal &&
+              Array.from({ length: pagesTotal }, (_, i) => i + 1).map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+          </select>
+        </label>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -173,8 +174,8 @@ function App() {
           <img src={items.results[count].image} alt={items.results[count].name} />
         </div>
 
-        {items.results.map((item) => (
-          <div key={item.id}>
+        {itemsfilter.results.map((item) => (
+          <div key={item.id} style={{ display: "inline-block", margin: "10px" }}>
             <h2>{item.id} {item.name}</h2>
             <img src={item.image} alt={item.name} />
           </div>
