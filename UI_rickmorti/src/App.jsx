@@ -163,7 +163,11 @@ function App() {
         </label>
         <div key={items.results[count].id}>
           <h2>{items.results[count].id} {items.results[count].name}</h2>
-          <img src={items.results[count].image} alt={items.results[count].name} />
+          <img src={items.results[count].image} alt={items.results[count].name} style={{ display: "inline-block" }} />
+          <p style={{ display: "inline-block", textAlign: "left" }}> Species : {items.results[count].species}
+          <br/>Gender : {items.results[count].gender} 
+          <br/>Status : {items.results[count].status}
+          <br/>Location : {items.results[count].location.name} </p>
         </div>
         {console.log("itemsfilter", itemsfilter)}
 
