@@ -160,15 +160,15 @@ function App() {
                 </option>
               ))}
           </select>
-        </label>
-        <div key={items.results[count].id}>
-          <h2>{items.results[count].id} {items.results[count].name}</h2>
-          <img src={items.results[count].image} alt={items.results[count].name} style={{ display: "inline-block" }} />
-          <p style={{ display: "inline-block", textAlign: "left" }}> Species : {items.results[count].species}
-          <br/>Gender : {items.results[count].gender} 
-          <br/>Status : {items.results[count].status}
-          <br/>Location : {items.results[count].location.name} </p>
-        </div>
+        </label>{ Array.isArray(itemsfilter.results) && (
+        <div key={itemsfilter.results[count].id}>
+          <h2>{itemsfilter.results[count].id} {itemsfilter.results[count].name}</h2>
+          <img src={itemsfilter.results[count].image} alt={itemsfilter.results[count].name} style={{ display: "inline-block" }} />
+          <p style={{ display: "inline-block", textAlign: "left" }}> Species : {itemsfilter.results[count].species}
+          <br/>Gender : {itemsfilter.results[count].gender} 
+          <br/>Status : {itemsfilter.results[count].status}
+          <br/>Location : {itemsfilter.results[count].location.name} </p>
+        </div> )}
         {console.log("itemsfilter", itemsfilter)}
 
         { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item) => (
