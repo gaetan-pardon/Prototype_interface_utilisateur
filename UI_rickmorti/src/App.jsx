@@ -104,7 +104,7 @@ function App() {
   return (
     <>
       <h1>Rick & Morty</h1>
-      <div className="card">
+      <div id="detail" className="card">
         <button onClick={() => Array.isArray(itemsfilter.results) && (itemsfilter.results.length > count + 1) && setCount((count) => count + 1)}>
           suivant {count}
         </button>
@@ -167,9 +167,9 @@ function App() {
 
         { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item,index) => (
           <div key={item.id} className="uni_card">
-            <button onClick={() => setCount((count) => index)}>
+            <button onClick={() => setCount((count) => index)}> <a href="#detail">
             <h2>{item.id} {item.name}</h2>
-            <img className="taille_image" src={item.image} alt={item.name} />
+            <img className="taille_image" src={item.image} alt={item.name} /></a>
             </button>
           </div>
         )) }
