@@ -2,30 +2,11 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import CharacterDetail from "./composants/CharacterDetail";
 import CharacterGrid from "./composants/CharacterGrid";
-/*
-async function testApi() {
-  try {
-    const res = await fetch("https://rickandmortyapi.com/api/character");
-
-    if (!res.ok) {
-      throw new Error(res.status); //HTTP ${ }
-    }
-
-    const data = await res.json();
-    console.log("Données reçues :", data);
-  } catch (err) {
-    console.log("Erreur :", err.message);
-  }
-}
-
-testApi(); */
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [items, setItems] = useState([]);      // ce que tu affiches
+  const [count, setCount] = useState(0); 
   const [loading, setLoading] = useState(true); // état de chargement
   const [error, setError] = useState(null);     // message d’erreur
-  const [input, setInput] = useState("");
   const [filter, setFilter] = useState("");
   const [gender, setGender] = useState("");
   const [species, setSpecies] = useState("");
@@ -33,27 +14,8 @@ function App() {
   const [page, setPage] = useState(1);
   const [pagesTotal, setPagesTotal] = useState(null);
 
-  const [itemsfilter, setItemsfilter] = useState([]);
+  const [itemsfilter, setItemsfilter] = useState([]);  // ce que tu affiches
 
-  useEffect(() => {
-    async function load() {
-      try {
-        const res = await fetch("https://rickandmortyapi.com/api/character");
-
-        if (!res.ok) {
-          throw new Error(res.status); //HTTP ${ }
-        }
-
-        const data = await res.json();
-        console.log("Données reçues :", data);
-        setItems(data);
-      } catch (err) {
-        console.log("Erreur :", err.message);
-      } finally {
-        setLoading(false);
-      }
-    } load();
-  }, []);
 
   useEffect(() => {
     async function loadwf() {
@@ -168,34 +130,14 @@ function App() {
         </label>
             
         <CharacterDetail character={selected} />
-        {console.log("itemsfilter", itemsfilter)}
-        
 
-            <CharacterGrid
+        <CharacterGrid
   results={itemsfilter?.results}
   onSelectIndex={(index) => setCount(index)}
     />
        
 
       </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setFilter(input.trim());
-        }}
-      >
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Tape un filtre (ex: rick)"
-        />
-        <button type="submit">Rechercher</button>
-      </form>
-      <p>
-        error statue : {error ? "error" : "no error"} <br />
-        load statue : {loading ? "loading..." : "loaded"} <br />
-        Edit <code>src/App.jsx</code> and save to test HMR <br />
-      </p>
     </>
   )
 }
