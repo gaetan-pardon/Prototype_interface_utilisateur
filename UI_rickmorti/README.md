@@ -1,16 +1,40 @@
-# React + Vite
+# Rick and Morty - Explorateur de Personnages
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description du Projet
 
-Currently, two official plugins are available:
+Cette application est un explorateur interactif de personnages de la série animée **Rick and Morty**. Construite avec **React** et **Vite**, elle permet aux utilisateurs de découvrir et explorer les personnages de l'univers Rick and Morty de manière intuitive et visuelle.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Le projet utilise une architecture composant moderne avec React pour afficher dynamiquement les données des personnages, offrant une interface utilisateur réactive et performante grâce à Vite.
 
-## React Compiler
+## API Utilisée
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+L'application utilise l'**API Rick and Morty** gratuite et publique :
 
-## Expanding the ESLint configuration
+- **URL** : https://rickandmortyapi.com/api/character/
+- **Documentation** : https://rickandmortyapi.com/documentation
+- **Fonctionnalité** : Récupère les données complètes des personnages (nom, espèce, genre, statut, localisation, image)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Fonctionnalités Implémentées
+
+- ✅ **Affichage de Grille de Personnages** - Liste tous les personnages en format grille avec leurs images
+- ✅ **Cartes de Personnages** - Présentation visuelle de chaque personnage avec image
+- ✅ **Détails de Personnage** - Vue détaillée affichant :
+  - ID du personnage
+  - Nom
+  - Image
+  - Espèce
+  - Genre
+  - Statut
+  - Localisation
+- ✅ **Chargement de Données** - Récupération asynchrone des données via l'API Rick and Morty
+- ✅ **Navigation Interactive** - Bouton de navigation entre les personnages détaillés
+- ✅ **Sélection de Personnage** - Possibilité de sélectionner un personnage pour voir ses détails complets
+- ✅ **Build Tools Modernes** - Utilisation de Vite pour un développement et une compilation optimisée
+- ✅ **ESLint Configuration** - Linting automatique du code pour la qualité
+
+## Stack Technique
+
+- **React** - Bibliothèque UI
+- **Vite** - Bundler et serveur de développement
+- **JavaScript (JSX)** - Langage principal
+- **ESLint** - Linteur de code

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import CharacterDetail from "./composants/CharacterDetail";
 import CharacterGrid from "./composants/CharacterGrid";
+import { loadCharacters } from "./composants/loader";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,11 +24,8 @@ function App() {
         setLoading(true);
         setError(null);
 
+        const data = await loadCharacters(filter);
 
-        const res = await fetch("https://rickandmortyapi.com/api/character/?" + filter);
-        if (!res.ok) throw new Error(res.status);
-
-        const data = await res.json();
         console.log("Données filtrée reçues :", data);
         setItemsfilter(data);
         setPagesTotal(data.info.pages);
