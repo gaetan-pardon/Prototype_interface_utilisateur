@@ -129,7 +129,7 @@ function App() {
           </select>
         </label>
 
-         <label>
+        <label>
           Species:
           <select value={species} onChange={(e) => setSpecies(e.target.value)}>
             <option value="">Tous</option>
@@ -153,45 +153,47 @@ function App() {
                 </option>
               ))}
           </select>
-        </label>{ Array.isArray(itemsfilter.results) && (
-        <div key={itemsfilter.results[count].id}>
-          <h2>{itemsfilter.results[count].id} {itemsfilter.results[count].name}</h2>
-          <img src={itemsfilter.results[count].image} alt={itemsfilter.results[count].name} className="block_image" />
-          <div className="info_card"> Species : {itemsfilter.results[count].species}
-            <br/>Gender : {itemsfilter.results[count].gender} 
-            <br/>Status : {itemsfilter.results[count].status}
-            <br/>Location : {itemsfilter.results[count].location.name} 
-          </div>
-        </div> )}
+        </label>{Array.isArray(itemsfilter.results) && (
+          <div key={itemsfilter.results[count].id}>
+            <h2>{itemsfilter.results[count].id} {itemsfilter.results[count].name}</h2>
+            <img src={itemsfilter.results[count].image} alt={itemsfilter.results[count].name} className="block_image" />
+            <div className="info_card"> Species : {itemsfilter.results[count].species}
+              <br />Gender : {itemsfilter.results[count].gender}
+              <br />Status : {itemsfilter.results[count].status}
+              <br />Location : {itemsfilter.results[count].location.name}
+            </div>
+          </div>)}
         {console.log("itemsfilter", itemsfilter)}
 
-        { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item,index) => (
+        {Array.isArray(itemsfilter.results) && itemsfilter.results.map((item, index) => (
           <div key={item.id} className="uni_card">
-            <button onClick={() => setCount((count) => index)}> <a href="#detail">
-            <h2>{item.id} {item.name}</h2>
-            <img className="taille_image" src={item.image} alt={item.name} /></a>
+            <button onClick={() => setCount((count) => index)}>
+              <a href="#detail">
+                <h2>{item.id} {item.name}</h2>
+                <img className="taille_image" src={item.image} alt={item.name} />
+              </a>
             </button>
           </div>
-        )) }
+        ))}
       </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setFilter(input.trim());
-          }}
-        >
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Tape un filtre (ex: rick)"
-          />
-          <button type="submit">Rechercher</button>
-        </form>
-        <p>
-          error statue : {error ? "error" : "no error"} <br />
-          load statue : {loading ? "loading..." : "loaded"} <br />
-          Edit <code>src/App.jsx</code> and save to test HMR <br />
-        </p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setFilter(input.trim());
+        }}
+      >
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Tape un filtre (ex: rick)"
+        />
+        <button type="submit">Rechercher</button>
+      </form>
+      <p>
+        error statue : {error ? "error" : "no error"} <br />
+        load statue : {loading ? "loading..." : "loaded"} <br />
+        Edit <code>src/App.jsx</code> and save to test HMR <br />
+      </p>
     </>
   )
 }
