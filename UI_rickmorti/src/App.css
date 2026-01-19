@@ -61,3 +61,8 @@
   margin: 10px;
 
 }
+
+.taille_image {
+  width: 12em;
+  height: auto;
+}

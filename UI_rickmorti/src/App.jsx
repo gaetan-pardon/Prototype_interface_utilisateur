@@ -169,7 +169,7 @@ function App() {
           <div key={item.id} className="uni_card">
             <button onClick={() => setCount((count) => index)}>
             <h2>{item.id} {item.name}</h2>
-            <img src={item.image} alt={item.name} />
+            <img className="taille_image" src={item.image} alt={item.name} />
             </button>
           </div>
         )) }
