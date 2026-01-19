@@ -87,6 +87,7 @@ function App() {
     if (gender) params.set("gender", gender);
     if (species) params.set("species", species);
     setFilter(params.toString());
+    setCount(0);
 
   }, [page, status, gender, species]);
 
@@ -112,8 +113,8 @@ function App() {
       </div>
       <h1>Rick & Morty</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => Array.isArray(itemsfilter.results) && (itemsfilter.results.length > count + 1) && setCount((count) => count + 1)}>
+          suivant {count}
         </button>
         <label>
           Status:
@@ -171,10 +172,12 @@ function App() {
         </div> )}
         {console.log("itemsfilter", itemsfilter)}
 
-        { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item) => (
+        { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item,index) => (
           <div key={item.id} style={{ display: "inline-block", margin: "10px" }}>
+            <button onClick={() => setCount((count) => index)}>
             <h2>{item.id} {item.name}</h2>
             <img src={item.image} alt={item.name} />
+            </button>
           </div>
         )) }
       </div>
