@@ -87,16 +87,24 @@ function App() {
     setFilter(params.toString());
     setCount(0);
 
-  }, [page, status, gender, species]);
+  }, [page]);
 
   useEffect(() => {
+    const params = new URLSearchParams();
+    if (page) params.set("page", 1);
+    if (status) params.set("status", status);
+    if (gender) params.set("gender", gender);
+    if (species) params.set("species", species);
+    setFilter(params.toString());
+    setCount(0);
     setPage(1);
-  }, [pagesTotal]);
+  }, [status, gender, species]);
 
 
   if (loading) return <p>Chargement...</p>;
   if (error) return <p>Erreur: {error}</p>;
-  if (items.length === 0) return <p>Aucun résultat</p>;
+  if (itemsfilter.length === 0) return <p>Aucun résultat</p>;
+  if (pagesTotal < page) return <p>hors page</p>;
 
 
   return (
