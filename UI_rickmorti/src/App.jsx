@@ -166,9 +166,10 @@ function App() {
           <h2>{itemsfilter.results[count].id} {itemsfilter.results[count].name}</h2>
           <img src={itemsfilter.results[count].image} alt={itemsfilter.results[count].name} style={{ display: "inline-block" }} />
           <p style={{ display: "inline-block", textAlign: "left" }}> Species : {itemsfilter.results[count].species}
-          <br/>Gender : {itemsfilter.results[count].gender} 
-          <br/>Status : {itemsfilter.results[count].status}
-          <br/>Location : {itemsfilter.results[count].location.name} </p>
+            <br/>Gender : {itemsfilter.results[count].gender} 
+            <br/>Status : {itemsfilter.results[count].status}
+            <br/>Location : {itemsfilter.results[count].location.name} 
+          </p>
         </div> )}
         {console.log("itemsfilter", itemsfilter)}
 
