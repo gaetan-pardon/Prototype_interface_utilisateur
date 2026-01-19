@@ -103,14 +103,6 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Rick & Morty</h1>
       <div className="card">
         <button onClick={() => Array.isArray(itemsfilter.results) && (itemsfilter.results.length > count + 1) && setCount((count) => count + 1)}>
@@ -164,17 +156,17 @@ function App() {
         </label>{ Array.isArray(itemsfilter.results) && (
         <div key={itemsfilter.results[count].id}>
           <h2>{itemsfilter.results[count].id} {itemsfilter.results[count].name}</h2>
-          <img src={itemsfilter.results[count].image} alt={itemsfilter.results[count].name} style={{ display: "inline-block" }} />
-          <p style={{ display: "inline-block", textAlign: "left" }}> Species : {itemsfilter.results[count].species}
+          <img src={itemsfilter.results[count].image} alt={itemsfilter.results[count].name} className="block_image" />
+          <div className="info_card"> Species : {itemsfilter.results[count].species}
             <br/>Gender : {itemsfilter.results[count].gender} 
             <br/>Status : {itemsfilter.results[count].status}
             <br/>Location : {itemsfilter.results[count].location.name} 
-          </p>
+          </div>
         </div> )}
         {console.log("itemsfilter", itemsfilter)}
 
         { Array.isArray(itemsfilter.results) && itemsfilter.results.map((item,index) => (
-          <div key={item.id} style={{ display: "inline-block", margin: "10px" }}>
+          <div key={item.id} className="uni_card">
             <button onClick={() => setCount((count) => index)}>
             <h2>{item.id} {item.name}</h2>
             <img src={item.image} alt={item.name} />
