@@ -80,7 +80,7 @@ function App() {
       <h1>Rick & Morty</h1>
       <div id="detail" className="card">
         <button onClick={() => Array.isArray(itemsfilter.results) && (itemsfilter.results.length > count + 1) && setCount((count) => count + 1)}>
-          suivant {count}
+          suivant
         </button>
         <label>
           Status:
